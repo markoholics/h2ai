@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231D4ED8'/><path fill='white' d='M10,10 L10,62 Q10,74 21,74 L36,74 Q47,74 47,62 L47,40 L38,40 L38,62 Q38,65 36,65 L21,65 Q18,65 18,62 L18,10 Z'/><rect fill='white' x='54' y='24' width='8' height='52' rx='4'/><circle fill='white' cx='70' cy='13' r='9'/><line x1='58' y1='72' x2='46' y2='94' stroke='white' stroke-width='8' stroke-linecap='round'/><line x1='58' y1='72' x2='73' y2='93' stroke='white' stroke-width='8' stroke-linecap='round'/></svg>" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1082,6 +1083,32 @@
     .ok-hdg { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
     .ok-sub { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
 
+    /* ─── BOOK A CALL ─── */
+    #book-call {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+
+    .bk-header {
+      text-align: center; max-width: 600px;
+      margin: 0 auto 56px;
+    }
+
+    .hs-embed-wrap {
+      max-width: 900px; margin: 0 auto;
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--border-md);
+      background: var(--card);
+      min-height: 660px;
+    }
+
+    .hs-embed-wrap iframe,
+    .hs-embed-wrap .meetings-iframe-container {
+      width: 100% !important;
+      min-height: 660px;
+      border: none;
+    }
+
     /* ─── FOOTER ─── */
     footer {
       background: var(--bg2);
@@ -1175,12 +1202,12 @@
   <nav id="nav">
     <a href="/" class="nav-logo">
       <div class="nav-logo-mark">
-        <svg width="40" height="40" viewBox="0 0 220 215" xmlns="http://www.w3.org/2000/svg">
-          <path fill="white" d="M16,12 L16,140 Q16,174 48,174 L76,174 Q108,174 108,140 L108,96 L86,96 L86,140 Q86,152 76,152 L48,152 Q36,152 36,140 L36,12 Z"/>
-          <rect fill="white" x="120" y="44" width="18" height="125" rx="9"/>
-          <circle fill="white" cx="152" cy="22" r="17"/>
-          <line x1="129" y1="162" x2="100" y2="210" stroke="white" stroke-width="18" stroke-linecap="round"/>
-          <line x1="129" y1="162" x2="163" y2="210" stroke="white" stroke-width="18" stroke-linecap="round"/>
+        <svg width="40" height="40" viewBox="0 0 240 300" xmlns="http://www.w3.org/2000/svg">
+          <path fill="white" d="M12,15 L12,220 Q12,258 50,258 L98,258 Q136,258 136,220 L136,118 L104,118 L104,220 Q104,228 98,228 L50,228 Q44,228 44,220 L44,15 Z"/>
+          <rect fill="white" x="152" y="55" width="22" height="148" rx="11"/>
+          <circle fill="white" cx="192" cy="31" r="21"/>
+          <line x1="163" y1="197" x2="130" y2="278" stroke="white" stroke-width="22" stroke-linecap="round"/>
+          <line x1="163" y1="197" x2="202" y2="276" stroke="white" stroke-width="22" stroke-linecap="round"/>
         </svg>
       </div>
       <div class="nav-logo-text">
@@ -1198,7 +1225,7 @@
     </div>
 
     <div class="nav-right">
-      <a href="#enquiry" class="btn btn-ghost">Book a Call</a>
+      <a href="#book-call" class="btn btn-ghost">Book a Call</a>
       <a href="#enquiry" class="btn btn-primary">Get in Touch →</a>
     </div>
 
@@ -1210,7 +1237,8 @@
     <a href="#advisory"    onclick="toggleMob()">H2AI Advisory</a>
     <a href="#learn-section" onclick="toggleMob()">H2AI Learn</a>
     <a href="#labs-section" onclick="toggleMob()">H2AI Labs</a>
-    <a href="#enquiry"     onclick="toggleMob()">Contact / Book a Call</a>
+    <a href="#book-call"   onclick="toggleMob()">Book a Call</a>
+    <a href="#enquiry"     onclick="toggleMob()">Send an Enquiry</a>
   </div>
 
   <!-- ═══ HERO ═══ -->
@@ -1696,18 +1724,36 @@
     </div>
   </section>
 
+  <!-- ═══ BOOK A CALL ═══ -->
+  <section id="book-call">
+    <div class="container">
+      <div class="bk-header">
+        <span class="section-tag r">Schedule a Call</span>
+        <h2 class="stitle r rd1">Book a Discovery Call</h2>
+        <p class="slead r rd2" style="margin:0 auto;text-align:center">Choose a time that works for you. 30 minutes, no obligation — just a conversation about your context.</p>
+      </div>
+      <div class="hs-embed-wrap r rd1" id="hs-calendar">
+        <!-- HubSpot Meetings embed loads here -->
+        <div style="display:flex;align-items:center;justify-content:center;min-height:660px;flex-direction:column;gap:16px">
+          <div style="width:48px;height:48px;border:3px solid var(--border-md);border-top-color:var(--blue-mid);border-radius:50%;animation:spin 0.9s linear infinite"></div>
+          <p style="color:var(--text2);font-size:0.85rem">Calendar loading…</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══ FOOTER ═══ -->
   <footer>
     <div class="container">
       <div class="ft-top">
         <div class="ft-brand">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-            <svg width="34" height="34" viewBox="0 0 220 215" xmlns="http://www.w3.org/2000/svg">
-              <path fill="white" d="M16,12 L16,140 Q16,174 48,174 L76,174 Q108,174 108,140 L108,96 L86,96 L86,140 Q86,152 76,152 L48,152 Q36,152 36,140 L36,12 Z"/>
-              <rect fill="white" x="120" y="44" width="18" height="125" rx="9"/>
-              <circle fill="white" cx="152" cy="22" r="17"/>
-              <line x1="129" y1="162" x2="100" y2="210" stroke="white" stroke-width="18" stroke-linecap="round"/>
-              <line x1="129" y1="162" x2="163" y2="210" stroke="white" stroke-width="18" stroke-linecap="round"/>
+            <svg width="34" height="34" viewBox="0 0 240 300" xmlns="http://www.w3.org/2000/svg">
+              <path fill="white" d="M12,15 L12,220 Q12,258 50,258 L98,258 Q136,258 136,220 L136,118 L104,118 L104,220 Q104,228 98,228 L50,228 Q44,228 44,220 L44,15 Z"/>
+              <rect fill="white" x="152" y="55" width="22" height="148" rx="11"/>
+              <circle fill="white" cx="192" cy="31" r="21"/>
+              <line x1="163" y1="197" x2="130" y2="278" stroke="white" stroke-width="22" stroke-linecap="round"/>
+              <line x1="163" y1="197" x2="202" y2="276" stroke="white" stroke-width="22" stroke-linecap="round"/>
             </svg>
             <span style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:var(--white)">H²AI</span>
           </div>
@@ -1910,10 +1956,15 @@
 
         document.getElementById('form-body').style.display = 'none';
         document.getElementById('form-ok').classList.add('show');
+        document.getElementById('form-ok').scrollIntoView({ behavior: 'smooth', block: 'center' });
 
       } catch (err) {
         console.error('[enquiry]', err);
-        errEl.textContent = err.message || 'Something went wrong — please try again or email us directly.';
+        const msg = err.message || '';
+        const friendly = msg.includes('schema cache') || msg.includes('relation') || msg.includes('does not exist')
+          ? 'Our enquiry system is being set up — please email us directly at hello@humantothepowerofai.com and we\'ll get back to you within 24 hours.'
+          : msg || 'Something went wrong — please try again or email us directly.';
+        errEl.textContent = friendly;
         errEl.classList.add('show');
         btn.disabled = false;
         btn.classList.remove('loading');
