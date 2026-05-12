@@ -1162,30 +1162,81 @@
     .rd3 { transition-delay: 0.24s; }
     .rd4 { transition-delay: 0.32s; }
 
-    /* ─── RESPONSIVE ─── */
+       /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
       .adv-inner, .learn-inner { grid-template-columns: 1fr; gap: 48px; }
       .sb-header { grid-template-columns: 1fr; gap: 16px; }
       .ft-top { grid-template-columns: 1fr 1fr; }
+      .sb-grid { grid-template-columns: 1fr 1fr; }
+      .fw-eq { padding: 28px 32px; gap: 20px; }
     }
 
     @media (max-width: 840px) {
       nav { padding: 0 20px; }
       .container { padding: 0 20px; }
       .nav-links, .nav-right .btn-ghost { display: none; }
+      .nav-right .btn-primary { display: none; }
       .nav-toggle { display: block; }
       .fw-grid, .sb-grid, .labs-grid { grid-template-columns: 1fr; }
-      .enq-inner { grid-template-columns: 1fr; gap: 48px; }
+      .enq-inner { grid-template-columns: 1fr; gap: 40px; }
       .form-row { grid-template-columns: 1fr; }
-      section { padding: 72px 0; }
+      section { padding: 64px 0; }
       .ft-top { grid-template-columns: 1fr; gap: 28px; }
       .ghost-text { display: none; }
+      .hero-stats { gap: 24px; }
+      .adv-inner, .learn-inner { gap: 36px; }
+      .adv-box { padding: 32px 24px; }
+      .learn-card { padding: 28px 24px; }
+      .enq-card { padding: 32px 24px; }
+      .fw-card { padding: 32px 24px; }
+      .fw-header { margin-bottom: 48px; }
+      .labs-header { margin-bottom: 48px; }
+      .sb-header { margin-bottom: 40px; }
+      .bk-header { margin-bottom: 36px; }
+      .hs-embed-wrap { min-height: 560px; border-radius: 10px; }
+      .hs-embed-wrap .meetings-iframe-container { min-height: 560px; }
+      .ft-bot { flex-direction: column; align-items: flex-start; gap: 6px; }
     }
 
-    @media (max-width: 520px) {
-      .hero-actions { flex-direction: column; }
+    @media (max-width: 600px) {
+      #hero { min-height: 100svh; }
+      .hero-content { padding-top: 60px; }
+      .hero-inner { max-width: 100%; }
+      .hero-chip { margin-bottom: 24px; }
+      .hero-sub { margin-bottom: 32px; font-size: 0.95rem; }
+      .hero-actions { flex-direction: column; margin-bottom: 40px; }
       .hero-actions .btn { width: 100%; justify-content: center; }
-      .fw-eq { flex-direction: column; gap: 12px; }
+      .hero-stats { flex-direction: column; gap: 18px; padding-top: 20px; }
+      .stat-val { font-size: 1.5rem; }
+      .fw-eq { flex-direction: column; gap: 10px; padding: 24px 20px; text-align: center; }
+      .eq-op { display: none; }
+      .fw-card { padding: 28px 20px; }
+      .fw-num { font-size: 2.4rem; }
+      .adv-service { padding: 14px 16px; gap: 14px; }
+      .adv-box { padding: 28px 20px; }
+      .adv-box h3 { font-size: 1.25rem; }
+      .learn-card { padding: 24px 20px; }
+      .lab-card { padding: 24px 20px; }
+      .sb-card { padding: 28px 22px; }
+      .enq-card { padding: 28px 20px; }
+      .enq-trust { margin-top: 28px; gap: 16px; }
+      section { padding: 52px 0; }
+      h2.stitle { font-size: clamp(1.6rem, 6vw, 2.4rem); }
+      .slead { font-size: 0.95rem; }
+      .hs-embed-wrap { min-height: 480px; }
+      .hs-embed-wrap .meetings-iframe-container { min-height: 480px; }
+      footer { padding: 44px 0 24px; }
+      .ft-brand p { max-width: 100%; }
+      .scroll-cue { bottom: 20px; }
+    }
+
+    @media (max-width: 400px) {
+      .container { padding: 0 16px; }
+      nav { padding: 0 16px; }
+      .hero-content { padding-top: 50px; }
+      .fw-eq { padding: 20px 16px; }
+      section { padding: 44px 0; }
+      .adv-box, .learn-card, .enq-card, .lab-card { padding: 22px 16px; }
     }
   </style>
 </head>
