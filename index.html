@@ -1162,7 +1162,7 @@
     .rd3 { transition-delay: 0.24s; }
     .rd4 { transition-delay: 0.32s; }
 
-       /* ─── RESPONSIVE ─── */
+           /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
       .adv-inner, .learn-inner { grid-template-columns: 1fr; gap: 48px; }
       .sb-header { grid-template-columns: 1fr; gap: 16px; }
@@ -1200,9 +1200,9 @@
 
     @media (max-width: 600px) {
       #hero { min-height: 100svh; }
-      .hero-content { padding-top: 60px; }
+      .hero-content { padding-top: 120px; }
       .hero-inner { max-width: 100%; }
-      .hero-chip { margin-bottom: 24px; }
+      .hero-chip { margin-bottom: 28px; }
       .hero-sub { margin-bottom: 32px; font-size: 0.95rem; }
       .hero-actions { flex-direction: column; margin-bottom: 40px; }
       .hero-actions .btn { width: 100%; justify-content: center; }
@@ -1217,7 +1217,9 @@
       .adv-box h3 { font-size: 1.25rem; }
       .learn-card { padding: 24px 20px; }
       .lab-card { padding: 24px 20px; }
-      .sb-card { padding: 28px 22px; }
+      .sb-card { padding: 28px 22px; text-align: center; }
+      .sb-card .sb-badge { margin-left: auto; margin-right: auto; }
+      .sb-card .sb-arrow { justify-content: center; }
       .enq-card { padding: 28px 20px; }
       .enq-trust { margin-top: 28px; gap: 16px; }
       section { padding: 52px 0; }
@@ -1227,7 +1229,8 @@
       .hs-embed-wrap .meetings-iframe-container { min-height: 480px; }
       footer { padding: 44px 0 24px; }
       .ft-brand p { max-width: 100%; }
-      .scroll-cue { bottom: 20px; }
+      .scroll-cue { bottom: 20px; left: auto; right: 24px; transform: none; }
+      #marquee-band { position: relative; z-index: 2; margin-top: 16px; }
     }
 
     @media (max-width: 400px) {
