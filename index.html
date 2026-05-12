@@ -100,6 +100,48 @@
     body:has(a:hover) #cursor, body:has(button:hover) #cursor { width: 6px; height: 6px; background: white; }
     body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring { width: 56px; height: 56px; border-color: rgba(255,255,255,0.2); }
 
+        /* ─── ROTATE OVERLAY ─── */
+    #rotate-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      background: var(--bg);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      text-align: center;
+      padding: 40px 32px;
+    }
+
+    #rotate-overlay .rot-icon {
+      width: 72px; height: 72px;
+      animation: rotatePhone 2s cubic-bezier(0.4,0,0.2,1) infinite;
+    }
+
+    @keyframes rotatePhone {
+      0%   { transform: rotate(0deg); }
+      35%  { transform: rotate(90deg); }
+      65%  { transform: rotate(90deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    #rotate-overlay h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem; font-weight: 800;
+      color: var(--white); letter-spacing: -0.03em;
+    }
+
+    #rotate-overlay p {
+      font-size: 0.88rem; color: var(--muted);
+      line-height: 1.65; max-width: 260px;
+    }
+
+    @media (orientation: portrait) and (max-width: 1024px) {
+      #rotate-overlay { display: flex; }
+    }
+
     @media (hover: none) { #cursor, #cursor-ring { display: none; } }
 
     /* ─── SCROLL PROGRESS ─── */
@@ -1244,6 +1286,18 @@
   </style>
 </head>
 <body>
+
+    <!-- Rotate overlay -->
+  <div id="rotate-overlay" aria-hidden="true">
+    <svg class="rot-icon" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="8" width="32" height="54" rx="6" stroke="white" stroke-width="3"/>
+      <circle cx="36" cy="54" r="2.5" fill="white"/>
+      <path d="M 58 18 A 26 26 0 0 1 62 36" stroke="#3B82F6" stroke-width="3" stroke-linecap="round"/>
+      <polyline points="62,28 62,36 54,36" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <h2>Rotate your device</h2>
+    <p>This experience is designed for landscape mode. Please rotate your phone or tablet for the best view.</p>
+  </div>
 
   <!-- Cursor -->
   <div id="cursor"></div>
