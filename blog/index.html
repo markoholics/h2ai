@@ -456,6 +456,16 @@
 
     .blog-card:hover .card-arrow { color: var(--blue-light); transform: translateX(4px); }
 
+    .blog-card.hidden { display: none; }
+
+    .blog-empty {
+      grid-column: 1 / -1;
+      padding: 64px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
     /* ─── FOOTER ─── */
     footer {
       border-top: 1px solid var(--border);
@@ -577,17 +587,17 @@
   <section class="blog-section">
     <div class="container">
       <div class="blog-filter-row">
-        <button class="filter-btn active">All Posts</button>
-        <button class="filter-btn">Agentic AI</button>
-        <button class="filter-btn">SEO &amp; Search</button>
-        <button class="filter-btn">AI Strategy</button>
-        <button class="filter-btn">Education</button>
+        <button class="filter-btn active" data-filter="all">All Posts</button>
+        <button class="filter-btn" data-filter="agentic-ai">Agentic AI</button>
+        <button class="filter-btn" data-filter="seo-search">SEO &amp; Search</button>
+        <button class="filter-btn" data-filter="ai-strategy">AI Strategy</button>
+        <button class="filter-btn" data-filter="education">Education</button>
       </div>
 
       <div class="blog-grid">
 
         <!-- Featured post -->
-        <a href="/blog/how-to-adapt-to-googles-agentic-ai-search-brand-playbook" class="blog-card featured">
+        <a href="/blog/how-to-adapt-to-googles-agentic-ai-search-brand-playbook" class="blog-card featured" data-tags="agentic-ai seo-search">
           <div class="card-img" style="height:auto;padding:0;background:none;border-bottom:1px solid var(--border)">
             <img src="/blog/images/agentic-ai-search-thumbnail.png" alt="How to Adapt to Google's Agentic AI Search: A Brand Playbook" style="width:100%;height:100%;object-fit:cover;display:block;max-height:280px;" />
           </div>
@@ -608,7 +618,7 @@
         </a>
 
         <!-- Post 2 -->
-        <a href="/blog/h2ai-framework-why-human-x-ai-beats-human-plus-ai" class="blog-card">
+        <a href="/blog/h2ai-framework-why-human-x-ai-beats-human-plus-ai" class="blog-card" data-tags="ai-strategy education">
           <div class="card-img" style="height:auto;padding:0;background:none;border-bottom:1px solid var(--border)">
             <img src="/blog/images/h2ai-framework-thumbnail.png" alt="The H²AI Framework: Why Human × AI Beats Human + AI" style="width:100%;height:100%;object-fit:cover;display:block;max-height:200px;" />
           </div>
@@ -629,7 +639,7 @@
         </a>
 
         <!-- Post 3 -->
-        <a href="/blog/google-ads-agentic-ai-era-search" class="blog-card">
+        <a href="/blog/google-ads-agentic-ai-era-search" class="blog-card" data-tags="agentic-ai seo-search">
           <div class="card-img" style="height:auto;padding:0;background:none;border-bottom:1px solid var(--border)">
             <img src="/blog/images/google-ads-agentic-era-thumbnail.png" alt="Paid Attention in an Autonomous World: Google Ads for the Agentic AI Era" style="width:100%;height:100%;object-fit:cover;display:block;max-height:200px;" />
           </div>
@@ -650,7 +660,7 @@
         </a>
 
         <!-- Post 4 -->
-        <a href="/blog/synthetic-chokehold-how-to-build-owned-audience-agentic-era" class="blog-card">
+        <a href="/blog/synthetic-chokehold-how-to-build-owned-audience-agentic-era" class="blog-card" data-tags="agentic-ai ai-strategy">
           <div class="card-img" style="height:auto;padding:0;background:none;border-bottom:1px solid var(--border)">
             <img src="/blog/images/synthetic-chokehold-thumbnail.png" alt="The Synthetic Chokehold: How to Build an Owned Audience in the Agentic Era" style="width:100%;height:100%;object-fit:cover;display:block;max-height:200px;" />
           </div>
@@ -770,11 +780,36 @@
       }
     });
 
-    /* ─── FILTER BUTTONS (visual only) ─── */
-    document.querySelectorAll('.filter-btn').forEach(btn => {
+    /* ─── FILTER BUTTONS ─── */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const blogCards  = document.querySelectorAll('.blog-card');
+    const blogGrid   = document.querySelector('.blog-grid');
+
+    filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        let visibleCount = 0;
+
+        blogCards.forEach(card => {
+          const tags = (card.dataset.tags || '').split(' ');
+          const show = filter === 'all' || tags.includes(filter);
+          card.classList.toggle('hidden', !show);
+          if (show) visibleCount++;
+        });
+
+        // Remove any previous empty state
+        const prev = blogGrid.querySelector('.blog-empty');
+        if (prev) prev.remove();
+
+        if (visibleCount === 0) {
+          const empty = document.createElement('p');
+          empty.className = 'blog-empty';
+          empty.textContent = 'No posts in this category yet — check back soon.';
+          blogGrid.appendChild(empty);
+        }
       });
     });
   </script>
