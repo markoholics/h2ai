@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — H²AI | Insights on AI Strategy, Education &amp; Innovation</title>
+  <meta name="description" content="Insights, playbooks, and deep-dives on AI strategy, agentic AI, and how to multiply human performance with AI." />
+  <meta property="og:title" content="Blog — H²AI" />
+  <meta property="og:description" content="Insights, playbooks, and deep-dives on AI strategy, agentic AI, and how to multiply human performance with AI." />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://humantothepowerofai.com/blog" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/logo.png" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #04050A;
+      --bg2:        #070810;
+      --surface:    #0C0E18;
+      --card:       #10121E;
+      --card-hi:    #141826;
+      --border:     rgba(255,255,255,0.055);
+      --border-md:  rgba(255,255,255,0.1);
+      --border-hi:  rgba(255,255,255,0.18);
+
+      --blue:       #1D4ED8;
+      --blue-mid:   #3B82F6;
+      --blue-light: #93C5FD;
+      --blue-glow:  rgba(29, 78, 216, 0.22);
+
+      --white:      #FFFFFF;
+      --text:       #EDF2FF;
+      --text2:      #8B9DBB;
+      --muted:      #3D4660;
+
+      --r:          6px;
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    @media (hover: none) { body { cursor: auto; } }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── GRAIN OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ─── CUSTOM CURSOR ─── */
+    #cursor {
+      position: fixed;
+      width: 10px; height: 10px;
+      background: var(--blue-mid);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s, height 0.2s, background 0.2s, opacity 0.2s;
+      mix-blend-mode: screen;
+    }
+
+    #cursor-ring {
+      position: fixed;
+      width: 36px; height: 36px;
+      border: 1px solid rgba(59,130,246,0.4);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s cubic-bezier(0.16,1,0.3,1), height 0.4s cubic-bezier(0.16,1,0.3,1), transform 0.1s linear, opacity 0.3s;
+    }
+
+    body:has(a:hover) #cursor, body:has(button:hover) #cursor { width: 6px; height: 6px; background: white; }
+    body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring { width: 56px; height: 56px; border-color: rgba(255,255,255,0.2); }
+
+    @media (hover: none) { #cursor, #cursor-ring { display: none; } }
+
+    /* ─── SCROLL PROGRESS ─── */
+    #progress-line {
+      position: fixed;
+      top: 0; left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-light));
+      z-index: 600;
+      transform-origin: left;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      padding: 0 48px;
+      justify-content: space-between;
+      transition: background 0.5s, border-color 0.5s;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav.scrolled {
+      background: rgba(4,5,10,0.88);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border-color: var(--border);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo-mark {
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text { line-height: 1.2; }
+
+    .nav-logo-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      display: block;
+    }
+
+    .nav-logo-tag {
+      font-size: 0.6rem; font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+    }
+
+    .nav-links a {
+      font-size: 0.84rem; font-weight: 500;
+      color: var(--text2);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--white); }
+
+    .nav-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; margin-right: 5px; vertical-align: middle; position: relative; top: -1px; }
+
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 20px;
+      font-size: 0.84rem; font-weight: 600;
+      border-radius: var(--r);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border-md);
+      color: var(--text2);
+    }
+    .btn-ghost:hover { border-color: var(--border-hi); color: var(--text); }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      overflow: hidden;
+    }
+    .btn-primary:hover { background: #1e40af; box-shadow: 0 4px 24px rgba(29,78,216,0.4); transform: translateY(-1px); }
+
+    .nav-toggle {
+      display: none; background: none;
+      border: 1px solid var(--border-md);
+      color: var(--text); padding: 7px 10px;
+      border-radius: var(--r); cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    /* ─── MOBILE MENU ─── */
+    .mob-menu {
+      display: none; position: fixed;
+      top: 66px; left: 0; right: 0;
+      background: rgba(4,5,10,0.97);
+      backdrop-filter: blur(30px);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 28px; z-index: 400;
+      flex-direction: column; gap: 4px;
+    }
+    .mob-menu.open { display: flex; }
+    .mob-menu a {
+      font-size: 0.9rem; font-weight: 500;
+      color: var(--text2); padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .mob-menu a:last-child { border-bottom: none; }
+    .mob-menu a:hover { color: var(--text); }
+
+    /* ─── CONTAINER ─── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+
+    /* ─── BLOG HERO ─── */
+    .blog-hero {
+      padding-top: 140px;
+      padding-bottom: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blog-hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: -200px;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(29,78,216,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .blog-hero-inner {
+      position: relative; z-index: 2;
+    }
+
+    .blog-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(29,78,216,0.1);
+      border: 1px solid rgba(29,78,216,0.22);
+      border-radius: 100px;
+      padding: 5px 14px 5px 8px;
+      margin-bottom: 28px;
+    }
+
+    .blog-tag-dot {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: rgba(29,78,216,0.25);
+      border: 1px solid rgba(59,130,246,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.55rem; color: var(--blue-light);
+    }
+
+    .blog-tag-text {
+      font-size: 0.72rem; font-weight: 600;
+      color: var(--blue-light);
+      letter-spacing: 0.07em; text-transform: uppercase;
+    }
+
+    .blog-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.05em;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+
+    .blog-lead {
+      font-size: 1.1rem;
+      color: var(--text2);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ─── BLOG GRID ─── */
+    .blog-section {
+      padding-bottom: 100px;
+      border-top: 1px solid var(--border);
+    }
+
+    .blog-filter-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 28px 0 40px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 7px 16px;
+      border-radius: 100px;
+      font-size: 0.78rem; font-weight: 600;
+      border: 1px solid var(--border-md);
+      background: transparent;
+      color: var(--text2);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .filter-btn:hover { border-color: var(--border-hi); color: var(--text); }
+    .filter-btn.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: white;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .blog-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+      display: flex; flex-direction: column;
+      text-decoration: none; color: inherit;
+    }
+
+    .blog-card:hover {
+      background: var(--card-hi);
+      border-color: var(--border-md);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    }
+
+    .blog-card.featured {
+      grid-column: span 2;
+    }
+
+    .card-img {
+      height: 200px;
+      background: linear-gradient(135deg, rgba(29,78,216,0.15) 0%, rgba(124,58,237,0.08) 50%, rgba(8,145,178,0.06) 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .blog-card.featured .card-img { height: 260px; }
+
+    .card-img-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(59,130,246,0.15);
+      letter-spacing: -0.06em;
+      user-select: none;
+    }
+
+    .card-img-orb {
+      position: absolute;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(29,78,216,0.18) 0%, transparent 70%);
+      top: -50px; right: -50px;
+    }
+
+    .card-body {
+      padding: 28px;
+      display: flex; flex-direction: column; flex: 1;
+    }
+
+    .card-meta {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .card-cat {
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--blue-light);
+      background: rgba(29,78,216,0.1);
+      border: 1px solid rgba(29,78,216,0.2);
+      border-radius: 100px;
+      padding: 3px 9px;
+    }
+
+    .card-date {
+      font-size: 0.75rem; color: var(--muted);
+    }
+
+    .card-read {
+      font-size: 0.75rem; color: var(--muted);
+      margin-left: auto;
+    }
+
+    .card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem; font-weight: 800;
+      color: var(--white); margin-bottom: 10px;
+      letter-spacing: -0.03em; line-height: 1.25;
+    }
+
+    .blog-card.featured .card-title {
+      font-size: 1.4rem;
+    }
+
+    .card-excerpt {
+      font-size: 0.86rem; color: var(--text2);
+      line-height: 1.65; flex: 1; margin-bottom: 20px;
+    }
+
+    .card-footer {
+      display: flex; align-items: center; gap: 10px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-author-av {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), #7C3AED);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; font-weight: 700; color: white;
+      flex-shrink: 0;
+    }
+
+    .card-author-name {
+      font-size: 0.78rem; color: var(--text2); font-weight: 500;
+    }
+
+    .card-arrow {
+      margin-left: auto;
+      font-size: 0.8rem; color: var(--muted);
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .blog-card:hover .card-arrow { color: var(--blue-light); transform: translateX(4px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 64px 0 32px;
+    }
+
+    .ft-top {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 56px;
+    }
+
+    .ft-brand p {
+      font-size: 0.84rem; color: var(--text2);
+      line-height: 1.7; max-width: 300px;
+    }
+
+    .ft-col h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--muted); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 18px;
+    }
+
+    .ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+    .ft-col ul li a {
+      font-size: 0.84rem; color: var(--text2);
+      transition: color 0.2s;
+    }
+    .ft-col ul li a:hover { color: var(--text); }
+
+    .ft-bot {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex; justify-content: space-between; flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .ft-bot p { font-size: 0.78rem; color: var(--muted); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .blog-grid { grid-template-columns: 1fr 1fr; }
+      .blog-card.featured { grid-column: span 2; }
+      .ft-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links, .nav-right { display: none; }
+      .nav-toggle { display: block; }
+      .container { padding: 0 24px; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .blog-card.featured { grid-column: span 1; }
+      .ft-top { grid-template-columns: 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+  <div id="progress-line"></div>
+
+  <nav id="nav">
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-mark">
+        <img src="/logo.png" alt="H²AI" width="36" height="36" style="filter: brightness(0) invert(1);">
+      </div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">H²AI</span>
+        <span class="nav-logo-tag">Human to the Power of AI™</span>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <a href="/#framework">Framework</a>
+      <a href="/#advisory"><span class="nav-dot" style="background:#3B82F6"></span>Advisory</a>
+      <a href="/#learn-section"><span class="nav-dot" style="background:#A78BFA"></span>Learn</a>
+      <a href="/#labs-section"><span class="nav-dot" style="background:#22D3EE"></span>Labs</a>
+      <a href="/blog" class="active">Blog</a>
+      <a href="/#enquiry">Contact</a>
+    </div>
+
+    <div class="nav-right">
+      <a href="/#book-call" class="btn btn-ghost">Book a Call</a>
+      <a href="/#enquiry" class="btn btn-primary">Get in Touch →</a>
+    </div>
+
+    <button class="nav-toggle" onclick="toggleMob()" aria-label="Menu">☰</button>
+  </nav>
+
+  <div class="mob-menu" id="mob">
+    <a href="/#framework" onclick="toggleMob()">The Framework</a>
+    <a href="/#advisory" onclick="toggleMob()">H2AI Advisory</a>
+    <a href="/#learn-section" onclick="toggleMob()">H2AI Learn</a>
+    <a href="/#labs-section" onclick="toggleMob()">H2AI Labs</a>
+    <a href="/blog" onclick="toggleMob()">Blog</a>
+    <a href="/#book-call" onclick="toggleMob()">Book a Call</a>
+    <a href="/#enquiry" onclick="toggleMob()">Send an Enquiry</a>
+  </div>
+
+  <!-- ─── BLOG HERO ─── -->
+  <div class="blog-hero">
+    <div class="container">
+      <div class="blog-hero-inner">
+        <div class="blog-tag">
+          <div class="blog-tag-dot">✦</div>
+          <span class="blog-tag-text">H²AI Insights</span>
+        </div>
+        <h1 class="blog-title">Ideas worth<br>multiplying.</h1>
+        <p class="blog-lead">Playbooks, deep-dives, and strategic frameworks on AI adoption — written for leaders who want to understand and act, not just follow the hype.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── BLOG SECTION ─── -->
+  <section class="blog-section">
+    <div class="container">
+      <div class="blog-filter-row">
+        <button class="filter-btn active">All Posts</button>
+        <button class="filter-btn">Agentic AI</button>
+        <button class="filter-btn">SEO &amp; Search</button>
+        <button class="filter-btn">AI Strategy</button>
+        <button class="filter-btn">Education</button>
+      </div>
+
+      <div class="blog-grid">
+
+        <!-- Featured post -->
+        <a href="/blog/how-to-adapt-to-googles-agentic-ai-search-brand-playbook" class="blog-card featured">
+          <div class="card-img">
+            <div class="card-img-orb"></div>
+            <span class="card-img-text">Agentic</span>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-cat">Agentic AI &amp; SEO</span>
+              <span class="card-date">May 20, 2026</span>
+              <span class="card-read">8 min read</span>
+            </div>
+            <h2 class="card-title">How to Adapt to Google's Agentic AI Search: A Brand Playbook</h2>
+            <p class="card-excerpt">The SEO playbook we've relied on for two decades is officially obsolete. We are no longer optimizing for a user who types a query — we are optimizing for autonomous AI agents that reason, plan, and act on behalf of the user. Here is your survival and dominance playbook for the Agentic AI era.</p>
+            <div class="card-footer">
+              <div class="card-author-av">MR</div>
+              <span class="card-author-name">Mohammad H. Rahman</span>
+              <span class="card-arrow">→</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Placeholder post 2 -->
+        <div class="blog-card" style="opacity:0.55;pointer-events:none">
+          <div class="card-img" style="background:linear-gradient(135deg,rgba(124,58,237,0.12) 0%,rgba(8,145,178,0.06) 100%)">
+            <div class="card-img-orb" style="background:radial-gradient(circle,rgba(124,58,237,0.18) 0%,transparent 70%)"></div>
+            <span class="card-img-text" style="-webkit-text-stroke:1px rgba(167,139,250,0.15)">Learn</span>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-cat" style="color:#C4B5FD;background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.2)">AI Education</span>
+              <span class="card-date">Coming Soon</span>
+            </div>
+            <h2 class="card-title">The H²AI Framework: Why Human × AI Beats Human + AI</h2>
+            <p class="card-excerpt">Most organisations add AI as a layer on top of existing processes. The multiplier model is fundamentally different — and the results speak for themselves.</p>
+            <div class="card-footer">
+              <div class="card-author-av">MR</div>
+              <span class="card-author-name">Mohammad H. Rahman</span>
+              <span class="card-arrow">→</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="ft-top">
+        <div class="ft-brand">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+            <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+              <img src="/logo.png" alt="H²AI" width="32" height="32" style="filter: brightness(0) invert(1);">
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:800;color:var(--white);letter-spacing:-0.02em">H²AI</span>
+            </a>
+          </div>
+          <p>The Human Multiplier Framework. Three specialised arms — Advisory, Learn, Labs — united by one mission: making every human in your organisation exponentially more capable.</p>
+        </div>
+
+        <div class="ft-col">
+          <h4>Advisory</h4>
+          <ul>
+            <li><a href="/#advisory">AI Readiness Audit</a></li>
+            <li><a href="/#advisory">Implementation Roadmap</a></li>
+            <li><a href="/#advisory">Workflow Embedding</a></li>
+            <li><a href="/#enquiry">Book a Discovery Call</a></li>
+          </ul>
+        </div>
+
+        <div class="ft-col">
+          <h4>Learn</h4>
+          <ul>
+            <li><a href="/#learn-section">Live Cohorts</a></li>
+            <li><a href="/#learn-section">Certifications</a></li>
+            <li><a href="/#learn-section">Team Training</a></li>
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="ft-col">
+          <h4>Labs</h4>
+          <ul>
+            <li><a href="/#labs-section">Pathw(AI)se</a></li>
+            <li><a href="/#labs-section">Ads Test Simulator</a></li>
+            <li><a href="/#labs-section">Marketing Audit Tool</a></li>
+            <li><a href="/#enquiry">Early Access</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ft-bot">
+        <p>© 2026 H²AI Technologies. All rights reserved.</p>
+        <p>HUMAN TO THE POWER OF AI™ is a trademark of H²AI Technologies.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ─── CUSTOM CURSOR ─── */
+    const cursor     = document.getElementById('cursor');
+    const cursorRing = document.getElementById('cursor-ring');
+    let mx = -100, my = -100, rx = -100, ry = -100;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top  = my + 'px';
+    });
+
+    (function animCursor() {
+      rx += (mx - rx) * 0.1;
+      ry += (my - ry) * 0.1;
+      cursorRing.style.left = rx + 'px';
+      cursorRing.style.top  = ry + 'px';
+      requestAnimationFrame(animCursor);
+    })();
+
+    /* ─── SCROLL PROGRESS + NAV ─── */
+    const progressLine = document.getElementById('progress-line');
+    const nav = document.getElementById('nav');
+
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const total    = document.documentElement.scrollHeight - window.innerHeight;
+      progressLine.style.width = (scrolled / total * 100) + '%';
+      nav.classList.toggle('scrolled', scrolled > 16);
+    }, { passive: true });
+
+    /* ─── MOBILE MENU ─── */
+    function toggleMob() {
+      document.getElementById('mob').classList.toggle('open');
+    }
+
+    document.addEventListener('click', e => {
+      const mob = document.getElementById('mob');
+      if (mob.classList.contains('open') &&
+          !mob.contains(e.target) &&
+          !document.querySelector('.nav-toggle').contains(e.target)) {
+        mob.classList.remove('open');
+      }
+    });
+
+    /* ─── FILTER BUTTONS (visual only) ─── */
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
