@@ -6,6 +6,7 @@
     { "src": "blog/index.html",                                      "use": "@vercel/static" },
     { "src": "blog/how-to-adapt-to-googles-agentic-ai-search-brand-playbook/index.html", "use": "@vercel/static" },
     { "src": "blog/h2ai-framework-why-human-x-ai-beats-human-plus-ai/index.html",        "use": "@vercel/static" },
+    { "src": "blog/google-ads-agentic-ai-era-search/index.html",                        "use": "@vercel/static" },
     { "src": "photo.jpg",                                            "use": "@vercel/static" },
     { "src": "photo.jpeg",                                           "use": "@vercel/static" },
     { "src": "logo.png",                                             "use": "@vercel/static" }
@@ -19,6 +20,8 @@
     { "src": "/blog/how-to-adapt-to-googles-agentic-ai-search-brand-playbook/", "dest": "/blog/how-to-adapt-to-googles-agentic-ai-search-brand-playbook/index.html" },
     { "src": "/blog/h2ai-framework-why-human-x-ai-beats-human-plus-ai",  "dest": "/blog/h2ai-framework-why-human-x-ai-beats-human-plus-ai/index.html" },
     { "src": "/blog/h2ai-framework-why-human-x-ai-beats-human-plus-ai/", "dest": "/blog/h2ai-framework-why-human-x-ai-beats-human-plus-ai/index.html" },
+    { "src": "/blog/google-ads-agentic-ai-era-search",  "dest": "/blog/google-ads-agentic-ai-era-search/index.html" },
+    { "src": "/blog/google-ads-agentic-ai-era-search/", "dest": "/blog/google-ads-agentic-ai-era-search/index.html" },
     { "src": "/blog",  "dest": "/blog/index.html" },
     { "src": "/blog/", "dest": "/blog/index.html" },
     { "src": "/(.*)", "dest": "/index.html" }
