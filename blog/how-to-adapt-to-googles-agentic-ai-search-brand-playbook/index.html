@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Adapt to Google's Agentic AI Search: A Brand Playbook — H²AI</title>
+  <meta name="description" content="The SEO playbook we've relied on for two decades is officially obsolete. Here is your survival and dominance playbook for the Agentic AI era." />
+  <meta property="og:title" content="How to Adapt to Google's Agentic AI Search: A Brand Playbook" />
+  <meta property="og:description" content="The SEO playbook we've relied on for two decades is officially obsolete. Here is your survival and dominance playbook for the Agentic AI era." />
+  <meta property="og:type" content="article" />
+  <meta property="article:published_time" content="2026-05-20" />
+  <meta property="article:author" content="Mohammad H. Rahman" />
+  <link rel="canonical" href="https://humantothepowerofai.com/blog/how-to-adapt-to-googles-agentic-ai-search-brand-playbook" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/logo.png" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #04050A;
+      --bg2:        #070810;
+      --surface:    #0C0E18;
+      --card:       #10121E;
+      --card-hi:    #141826;
+      --border:     rgba(255,255,255,0.055);
+      --border-md:  rgba(255,255,255,0.1);
+      --border-hi:  rgba(255,255,255,0.18);
+
+      --blue:       #1D4ED8;
+      --blue-mid:   #3B82F6;
+      --blue-light: #93C5FD;
+      --blue-glow:  rgba(29, 78, 216, 0.22);
+
+      --white:      #FFFFFF;
+      --text:       #EDF2FF;
+      --text2:      #8B9DBB;
+      --muted:      #3D4660;
+
+      --r:          6px;
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    @media (hover: none) { body { cursor: auto; } }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── GRAIN OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ─── CUSTOM CURSOR ─── */
+    #cursor {
+      position: fixed;
+      width: 10px; height: 10px;
+      background: var(--blue-mid);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s, height 0.2s, background 0.2s, opacity 0.2s;
+      mix-blend-mode: screen;
+    }
+
+    #cursor-ring {
+      position: fixed;
+      width: 36px; height: 36px;
+      border: 1px solid rgba(59,130,246,0.4);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s cubic-bezier(0.16,1,0.3,1), height 0.4s cubic-bezier(0.16,1,0.3,1), transform 0.1s linear, opacity 0.3s;
+    }
+
+    body:has(a:hover) #cursor, body:has(button:hover) #cursor { width: 6px; height: 6px; background: white; }
+    body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring { width: 56px; height: 56px; border-color: rgba(255,255,255,0.2); }
+
+    @media (hover: none) { #cursor, #cursor-ring { display: none; } }
+
+    /* ─── SCROLL PROGRESS ─── */
+    #progress-line {
+      position: fixed;
+      top: 0; left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-light));
+      z-index: 600;
+      transform-origin: left;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      padding: 0 48px;
+      justify-content: space-between;
+      transition: background 0.5s, border-color 0.5s;
+      border-bottom: 1px solid transparent;
+      background: rgba(4,5,10,0.88);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border-color: var(--border);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo-mark {
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text { line-height: 1.2; }
+
+    .nav-logo-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      display: block;
+    }
+
+    .nav-logo-tag {
+      font-size: 0.6rem; font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+    }
+
+    .nav-links a {
+      font-size: 0.84rem; font-weight: 500;
+      color: var(--text2);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--white); }
+
+    .nav-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; margin-right: 5px; vertical-align: middle; position: relative; top: -1px; }
+
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 20px;
+      font-size: 0.84rem; font-weight: 600;
+      border-radius: var(--r);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border-md);
+      color: var(--text2);
+    }
+    .btn-ghost:hover { border-color: var(--border-hi); color: var(--text); }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      overflow: hidden;
+    }
+    .btn-primary:hover { background: #1e40af; box-shadow: 0 4px 24px rgba(29,78,216,0.4); transform: translateY(-1px); }
+
+    .nav-toggle {
+      display: none; background: none;
+      border: 1px solid var(--border-md);
+      color: var(--text); padding: 7px 10px;
+      border-radius: var(--r); cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    /* ─── MOBILE MENU ─── */
+    .mob-menu {
+      display: none; position: fixed;
+      top: 66px; left: 0; right: 0;
+      background: rgba(4,5,10,0.97);
+      backdrop-filter: blur(30px);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 28px; z-index: 400;
+      flex-direction: column; gap: 4px;
+    }
+    .mob-menu.open { display: flex; }
+    .mob-menu a {
+      font-size: 0.9rem; font-weight: 500;
+      color: var(--text2); padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .mob-menu a:last-child { border-bottom: none; }
+    .mob-menu a:hover { color: var(--text); }
+
+    /* ─── CONTAINER ─── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+
+    /* ─── BLOG POST LAYOUT ─── */
+    .post-wrap {
+      padding-top: 120px;
+      padding-bottom: 100px;
+    }
+
+    .post-inner {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 72px;
+      align-items: start;
+    }
+
+    /* ─── BREADCRUMB ─── */
+    .breadcrumb {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.78rem; color: var(--muted);
+      margin-bottom: 32px;
+    }
+    .breadcrumb a { transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--text2); }
+    .breadcrumb-sep { color: var(--muted); opacity: 0.5; }
+
+    /* ─── ARTICLE ─── */
+    article {
+      min-width: 0;
+    }
+
+    .post-category {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(29,78,216,0.1);
+      border: 1px solid rgba(29,78,216,0.22);
+      border-radius: 100px;
+      padding: 4px 12px;
+      font-size: 0.68rem; font-weight: 700;
+      color: var(--blue-light);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .post-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .post-meta {
+      display: flex; align-items: center; gap: 20px;
+      flex-wrap: wrap;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 44px;
+    }
+
+    .meta-author {
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .author-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), #7C3AED);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 700; color: white;
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-size: 0.85rem; font-weight: 600;
+      color: var(--text);
+    }
+
+    .author-title {
+      font-size: 0.72rem; color: var(--muted);
+    }
+
+    .meta-divider {
+      width: 1px; height: 32px;
+      background: var(--border);
+    }
+
+    .meta-date {
+      font-size: 0.8rem; color: var(--text2);
+    }
+
+    .meta-read {
+      font-size: 0.8rem; color: var(--muted);
+    }
+
+    /* ─── ARTICLE BODY ─── */
+    .post-body {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text2);
+    }
+
+    .post-body p {
+      margin-bottom: 24px;
+    }
+
+    .post-body h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      margin-top: 52px;
+      margin-bottom: 16px;
+      padding-top: 52px;
+      border-top: 1px solid var(--border);
+    }
+
+    .post-body h2:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .post-body h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+
+    .post-body ul {
+      list-style: none;
+      margin-bottom: 24px;
+      padding-left: 0;
+    }
+
+    .post-body ul li {
+      padding: 8px 0 8px 22px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .post-body ul li:last-child { border-bottom: none; }
+
+    .post-body ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 50%;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--blue-mid);
+      transform: translateY(-50%);
+    }
+
+    .post-body ol {
+      list-style: none;
+      counter-reset: post-counter;
+      margin-bottom: 24px;
+      padding-left: 0;
+    }
+
+    .post-body ol li {
+      counter-increment: post-counter;
+      padding: 8px 0 8px 36px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .post-body ol li:last-child { border-bottom: none; }
+
+    .post-body ol li::before {
+      content: counter(post-counter);
+      position: absolute;
+      left: 0; top: 8px;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: rgba(29,78,216,0.15);
+      border: 1px solid rgba(59,130,246,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.68rem; font-weight: 700;
+      color: var(--blue-light);
+      line-height: 22px;
+      text-align: center;
+    }
+
+    .post-body strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .post-body code {
+      font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+      font-size: 0.85em;
+      background: var(--surface);
+      border: 1px solid var(--border-md);
+      border-radius: 4px;
+      padding: 2px 6px;
+      color: var(--blue-light);
+    }
+
+    .post-body pre {
+      background: var(--card);
+      border: 1px solid var(--border-md);
+      border-radius: 12px;
+      padding: 24px 28px;
+      overflow-x: auto;
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .post-body pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: 0.82rem;
+      color: var(--text2);
+      line-height: 1.7;
+    }
+
+    /* ─── SECTION CARDS (numbered sections) ─── */
+    .section-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+      margin: 40px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), transparent);
+    }
+
+    .section-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--blue-mid); margin-bottom: 10px;
+      display: block;
+    }
+
+    .section-block h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      margin: 0 0 16px;
+      padding: 0; border: none;
+    }
+
+    /* ─── CALLOUT ─── */
+    .callout {
+      background: rgba(29,78,216,0.07);
+      border: 1px solid rgba(29,78,216,0.2);
+      border-left: 3px solid var(--blue-mid);
+      border-radius: 0 10px 10px 0;
+      padding: 20px 24px;
+      margin: 28px 0;
+      font-size: 0.95rem;
+    }
+
+    .callout-label {
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--blue-light); margin-bottom: 8px;
+      display: block;
+    }
+
+    /* ─── LLM CARDS ─── */
+    .llm-grid {
+      display: flex; flex-direction: column; gap: 16px;
+      margin: 28px 0;
+    }
+
+    .llm-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .llm-card:hover { background: var(--card-hi); border-color: var(--border-md); }
+
+    .llm-card.gemini { border-left: 3px solid #4285F4; }
+    .llm-card.openai { border-left: 3px solid #10a37f; }
+    .llm-card.claude  { border-left: 3px solid #D97706; }
+
+    .llm-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .llm-badge {
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 100px;
+    }
+
+    .llm-badge.gemini { background: rgba(66,133,244,0.12); border: 1px solid rgba(66,133,244,0.25); color: #93C5FD; }
+    .llm-badge.openai { background: rgba(16,163,127,0.1); border: 1px solid rgba(16,163,127,0.25); color: #6EE7B7; }
+    .llm-badge.claude  { background: rgba(217,119,6,0.1);  border: 1px solid rgba(217,119,6,0.25);  color: #FCD34D; }
+
+    .llm-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--white); letter-spacing: -0.02em;
+    }
+
+    .llm-subtitle {
+      font-size: 0.7rem; color: var(--muted);
+    }
+
+    .llm-card p {
+      font-size: 0.88rem;
+      color: var(--text2);
+      line-height: 1.7;
+      margin-bottom: 0 !important;
+    }
+
+    .llm-card ul {
+      margin-top: 12px;
+      margin-bottom: 0 !important;
+    }
+
+    .llm-card ul li {
+      font-size: 0.87rem;
+    }
+
+    /* ─── DIAGRAM ─── */
+    .diagram-block {
+      background: var(--card);
+      border: 1px solid var(--border-md);
+      border-radius: 12px;
+      padding: 28px;
+      margin: 28px 0;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.82rem;
+      color: var(--text2);
+      line-height: 1.8;
+      overflow-x: auto;
+    }
+
+    .diagram-block .d-highlight { color: var(--blue-light); }
+    .diagram-block .d-arrow { color: var(--blue-mid); }
+
+    /* ─── CONCLUSION ─── */
+    .conclusion-block {
+      background: linear-gradient(135deg, rgba(29,78,216,0.07) 0%, rgba(124,58,237,0.04) 100%);
+      border: 1px solid rgba(29,78,216,0.18);
+      border-radius: 16px;
+      padding: 40px;
+      margin-top: 52px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .conclusion-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), #7C3AED, transparent);
+    }
+
+    .conclusion-block h2 {
+      border: none !important;
+      padding: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    /* ─── SIDEBAR ─── */
+    .post-sidebar {
+      position: sticky;
+      top: 88px;
+    }
+
+    .sidebar-toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .sidebar-toc h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--muted); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 16px;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+
+    .toc-list li a {
+      font-size: 0.82rem; color: var(--text2);
+      line-height: 1.4;
+      transition: color 0.2s;
+      display: block; padding: 4px 0;
+      border-left: 2px solid transparent;
+      padding-left: 12px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .toc-list li a:hover { color: var(--text); border-color: var(--blue-mid); }
+    .toc-list li a.toc-active { color: var(--blue-light); border-color: var(--blue-mid); }
+
+    .sidebar-cta {
+      background: var(--card);
+      border: 1px solid var(--border-md);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sidebar-cta::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-light));
+    }
+
+    .sidebar-cta h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem; font-weight: 800;
+      color: var(--white); margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .sidebar-cta p {
+      font-size: 0.8rem; color: var(--text2);
+      line-height: 1.55; margin-bottom: 16px;
+    }
+
+    .sidebar-cta .btn {
+      width: 100%; justify-content: center;
+    }
+
+    .sidebar-share {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-top: 24px;
+    }
+
+    .sidebar-share h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--muted); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 14px;
+    }
+
+    .share-links {
+      display: flex; gap: 8px;
+    }
+
+    .share-link {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center;
+      padding: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.75rem; color: var(--text2);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .share-link:hover { background: var(--card-hi); border-color: var(--border-md); color: var(--text); }
+
+    /* ─── BACK LINK ─── */
+    .back-to-blog {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 0.82rem; font-weight: 500;
+      color: var(--text2); margin-bottom: 32px;
+      transition: color 0.2s, gap 0.2s;
+    }
+
+    .back-to-blog:hover { color: var(--text); gap: 11px; }
+
+    /* ─── POST FOOTER ─── */
+    .post-footer {
+      margin-top: 64px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .post-author-card {
+      display: flex; align-items: center; gap: 14px;
+      flex: 1;
+    }
+
+    .author-avatar-lg {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), #7C3AED);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 800; color: white;
+      flex-shrink: 0;
+    }
+
+    .post-author-card h4 {
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--white); margin-bottom: 2px;
+    }
+
+    .post-author-card p {
+      font-size: 0.78rem; color: var(--muted);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 64px 0 32px;
+    }
+
+    .ft-top {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 56px;
+    }
+
+    .ft-brand p {
+      font-size: 0.84rem; color: var(--text2);
+      line-height: 1.7; max-width: 300px;
+    }
+
+    .ft-col h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--muted); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 18px;
+    }
+
+    .ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+    .ft-col ul li a {
+      font-size: 0.84rem; color: var(--text2);
+      transition: color 0.2s;
+    }
+    .ft-col ul li a:hover { color: var(--text); }
+
+    .ft-bot {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex; justify-content: space-between; flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .ft-bot p { font-size: 0.78rem; color: var(--muted); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .post-inner {
+        grid-template-columns: 1fr;
+      }
+      .post-sidebar {
+        position: static;
+        display: none;
+      }
+      .ft-top {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links, .nav-right { display: none; }
+      .nav-toggle { display: block; }
+      .container { padding: 0 24px; }
+      .post-wrap { padding-top: 100px; }
+      .ft-top { grid-template-columns: 1fr; gap: 32px; }
+      .llm-grid { gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+  <div id="progress-line"></div>
+
+  <nav id="nav">
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-mark">
+        <img src="/logo.png" alt="H²AI" width="36" height="36" style="filter: brightness(0) invert(1);">
+      </div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">H²AI</span>
+        <span class="nav-logo-tag">Human to the Power of AI™</span>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <a href="/#framework">Framework</a>
+      <a href="/#advisory"><span class="nav-dot" style="background:#3B82F6"></span>Advisory</a>
+      <a href="/#learn-section"><span class="nav-dot" style="background:#A78BFA"></span>Learn</a>
+      <a href="/#labs-section"><span class="nav-dot" style="background:#22D3EE"></span>Labs</a>
+      <a href="/blog" class="active">Blog</a>
+      <a href="/#enquiry">Contact</a>
+    </div>
+
+    <div class="nav-right">
+      <a href="/#book-call" class="btn btn-ghost">Book a Call</a>
+      <a href="/#enquiry" class="btn btn-primary">Get in Touch →</a>
+    </div>
+
+    <button class="nav-toggle" onclick="toggleMob()" aria-label="Menu">☰</button>
+  </nav>
+
+  <div class="mob-menu" id="mob">
+    <a href="/#framework" onclick="toggleMob()">The Framework</a>
+    <a href="/#advisory" onclick="toggleMob()">H2AI Advisory</a>
+    <a href="/#learn-section" onclick="toggleMob()">H2AI Learn</a>
+    <a href="/#labs-section" onclick="toggleMob()">H2AI Labs</a>
+    <a href="/blog" onclick="toggleMob()">Blog</a>
+    <a href="/#book-call" onclick="toggleMob()">Book a Call</a>
+    <a href="/#enquiry" onclick="toggleMob()">Send an Enquiry</a>
+  </div>
+
+  <main class="post-wrap">
+    <div class="container">
+      <div class="post-inner">
+
+        <!-- ─── ARTICLE ─── -->
+        <article>
+          <a href="/blog" class="back-to-blog">← Back to Blog</a>
+
+          <div class="breadcrumb">
+            <a href="/">Home</a>
+            <span class="breadcrumb-sep">/</span>
+            <a href="/blog">Blog</a>
+            <span class="breadcrumb-sep">/</span>
+            <span>Agentic AI Search</span>
+          </div>
+
+          <div class="post-category">✦ Agentic AI &amp; SEO</div>
+
+          <h1 class="post-title">How to Adapt to Google's Agentic AI Search: A Brand Playbook</h1>
+
+          <div class="post-meta">
+            <div class="meta-author">
+              <div class="author-avatar">MR</div>
+              <div>
+                <div class="author-name">Mohammad H. Rahman</div>
+                <div class="author-title">Founder, H²AI</div>
+              </div>
+            </div>
+            <div class="meta-divider"></div>
+            <div class="meta-date">May 20, 2026</div>
+            <div class="meta-divider"></div>
+            <div class="meta-read">8 min read</div>
+          </div>
+
+          <div class="post-body">
+
+            <p>The SEO playbook we've relied on for two decades is officially obsolete.</p>
+
+            <p>We are no longer optimizing for a user who types a query, skims a list of ten blue links, and clicks through to a website. Today, we are optimizing for <strong>Agentic AI</strong>—autonomous systems capable of reasoning, planning, executing multi-step workflows, and making decisions on behalf of the user.</p>
+
+            <p>With Google's search ecosystem evolving into an agentic engine, the reality of Zero-Click Search has reached its logical conclusion. The user doesn't just get an answer on the Search Engine Results Page (SERP); they get the entire task completed without ever leaving the interface.</p>
+
+            <p>If your brand's traffic relies on informational clicks, the floor is falling out. But for brands that know how to position themselves as the trusted data source for AI agents, this is the ultimate growth lever.</p>
+
+            <p>Here is your survival and dominance playbook for the Agentic AI era, optimized specifically to win citations across <strong>Google Gemini</strong>, <strong>OpenAI's SearchGPT/Advanced Voice</strong>, and <strong>Anthropic's Claude</strong>.</p>
+
+            <!-- SECTION 1 -->
+            <div class="section-block" id="section-1">
+              <span class="section-num">Section 01</span>
+              <h2>Shift from "Keywords" to "Data Infrastructure"</h2>
+              <p>AI agents don't read content the way humans do; they ingest it to build context or execute a function. If an agent (like Google's specialized shopping or research agents) cannot seamlessly parse your data, your brand ceases to exist in the search ecosystem.</p>
+            </div>
+
+            <div class="callout">
+              <span class="callout-label">Action Item</span>
+              <strong>Schema Architecture as a First-Class Citizen</strong><br>
+              To be cited by Gemini or Claude, your technical SEO must pivot toward ultra-dense, precise schema structuring. You need to give the AI agent the exact nodes it needs to map your entity.
+            </div>
+
+            <ul>
+              <li><strong>Entity Graphing:</strong> Use <code>About</code> and <code>Mentions</code> schema to tie your content explicitly to recognized Wikipedia or Wikidata entities.</li>
+              <li><strong>Actionable Schemas:</strong> Implement <code>PotentialAction</code>, <code>OrderAction</code>, or <code>ReserveAction</code> schema. If Google's agentic AI wants to book a flight, reserve a table, or purchase a software subscription for a user, your site must provide the structured API-like schema to allow the agent to execute that action.</li>
+            </ul>
+
+            <!-- SECTION 2 -->
+            <div class="section-block" id="section-2">
+              <span class="section-num">Section 02</span>
+              <h2>Optimizing for the Big Three: Gemini, OpenAI, and Claude</h2>
+              <p>Each LLM ecosystem acts slightly differently when pulling live data or generating zero-click citations. To ensure your brand is cited as the source material, you must optimize for their distinct behaviors:</p>
+            </div>
+
+            <div class="llm-grid">
+              <div class="llm-card gemini">
+                <div class="llm-header">
+                  <span class="llm-badge gemini">Google Gemini</span>
+                  <div>
+                    <div class="llm-title">The Ecosystem Agent</div>
+                    <div class="llm-subtitle">Relies on Google's live knowledge graph and real-time indexing</div>
+                  </div>
+                </div>
+                <p><strong>The Strategy:</strong> Gemini prioritizes Google-native ecosystem data (Google Maps, Google Shopping/Merchant Center, YouTube). To win Gemini citations, your Google Merchant Center feeds must be flawlessly updated, and your content must align with Google's updated E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) guidelines, backed by rigorous structured data.</p>
+              </div>
+
+              <div class="llm-card openai">
+                <div class="llm-header">
+                  <span class="llm-badge openai">OpenAI / SearchGPT</span>
+                  <div>
+                    <div class="llm-title">The Synthesis Agent</div>
+                    <div class="llm-subtitle">Favors highly authoritative, consensus-backed, or deeply analytical publisher networks</div>
+                  </div>
+                </div>
+                <p><strong>The Strategy:</strong> OpenAI search models lean on direct partnerships and robust web-crawling infrastructure (OAI-SearchBot). To be cited here, write deeply original, data-rich research reports, whitepapers, and contrarian industry viewpoints. Use clean, semantic HTML5 sectioning (<code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;section&gt;</code>) so the bot can effortlessly extract quotes.</p>
+              </div>
+
+              <div class="llm-card claude">
+                <div class="llm-header">
+                  <span class="llm-badge claude">Anthropic's Claude</span>
+                  <div>
+                    <div class="llm-title">The Context &amp; Reasoning Agent</div>
+                    <div class="llm-subtitle">Prioritizes deep nuance, step-by-step logic, and unbiased documentation</div>
+                  </div>
+                </div>
+                <p><strong>The Strategy:</strong> Write comprehensive, zero-fluff technical documentation and FAQs. Structure your content using a markdown-friendly hierarchy with clear logical progression. Claude excels at synthesising complex variables, so providing comprehensive comparative data matrices (e.g., Markdown tables comparing solutions) makes your site highly citable.</p>
+              </div>
+            </div>
+
+            <!-- SECTION 3 -->
+            <div class="section-block" id="section-3">
+              <span class="section-num">Section 03</span>
+              <h2>The Zero-Click Conversion Funnel</h2>
+              <p>When the user doesn't click, how do you measure success? The answer is <strong>Brand Mention Share (BMS)</strong> and <strong>API/Action Conversions</strong>.</p>
+            </div>
+
+            <p>When a user asks Google, <em>"Find the best AI-native marketing automation software for a mid-market e-commerce brand and set up a demo,"</em> the agent will evaluate options and present a synthesized summary.</p>
+
+            <div class="diagram-block">
+              <span class="d-highlight">[User Query]</span> <span class="d-arrow">──&gt;</span> <span class="d-highlight">[Google Agentic AI]</span> <span class="d-arrow">──&gt;</span> [Parses Structured Brand Data]<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└<span class="d-arrow">──&gt;</span> <span class="d-highlight">[Zero-Click Citation]</span><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└<span class="d-arrow">──&gt;</span> <span class="d-highlight">[Direct Agent Action / Conversion]</span>
+            </div>
+
+            <p>To win this interaction:</p>
+
+            <ol>
+              <li><strong>Own the Bottom of the Funnel (BoFU):</strong> Create highly specific, unambiguous content detailing exactly who your product is for, your pricing, and integration capabilities.</li>
+              <li><strong>Optimize for Natural Language Audio:</strong> With the rise of advanced voice modes across Gemini and OpenAI, optimize for conversational, spoken-word queries. Frame your headers as direct questions and your first sentences as concise, definitive answers.</li>
+            </ol>
+
+            <!-- CONCLUSION -->
+            <div class="conclusion-block">
+              <h2 class="post-body" style="font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:800;color:var(--white);letter-spacing:-0.03em;margin-bottom:16px;padding:0;border:none;">Conclusion: Human to the Power of AI</h2>
+              <p>The future of digital marketing isn't about fighting AI for a user's attention; it's about empowering AI to act as your brand's ambassador. By structuring your brand's digital footprint with flawless technical schema and hyper-dense semantic value, you ensure that when the agents search, your brand is the only logical answer they return.</p>
+              <p style="margin-bottom:0;margin-top:16px;"><strong>Welcome to the era of Agentic Optimization. Let's build.</strong></p>
+            </div>
+
+          </div><!-- /.post-body -->
+
+          <div class="post-footer">
+            <div class="post-author-card">
+              <div class="author-avatar-lg">MR</div>
+              <div>
+                <h4>Mohammad H. Rahman</h4>
+                <p>Founder of H²AI — helping organisations multiply human performance with AI through Advisory, Education, and innovative Lab tools.</p>
+              </div>
+            </div>
+            <a href="/#enquiry" class="btn btn-primary">Work with H²AI →</a>
+          </div>
+
+        </article>
+
+        <!-- ─── SIDEBAR ─── -->
+        <aside class="post-sidebar">
+          <div class="sidebar-toc">
+            <h4>In this article</h4>
+            <ul class="toc-list">
+              <li><a href="#section-1">1. Keywords → Data Infrastructure</a></li>
+              <li><a href="#section-2">2. Optimizing for Gemini, OpenAI &amp; Claude</a></li>
+              <li><a href="#section-3">3. Zero-Click Conversion Funnel</a></li>
+            </ul>
+          </div>
+
+          <div class="sidebar-cta">
+            <h4>Ready to Adapt?</h4>
+            <p>H²AI helps brands build the technical infrastructure to win in the agentic search era.</p>
+            <a href="/#enquiry" class="btn btn-primary">Get in Touch →</a>
+          </div>
+
+          <div class="sidebar-share">
+            <h4>Share this post</h4>
+            <div class="share-links">
+              <button class="share-link" onclick="copyLink()">Copy Link</button>
+              <a class="share-link" href="https://www.linkedin.com/sharing/share-offsite/?url=https://humantothepowerofai.com/blog/how-to-adapt-to-googles-agentic-ai-search-brand-playbook" target="_blank" rel="noopener">LinkedIn</a>
+              <a class="share-link" href="https://twitter.com/intent/tweet?url=https://humantothepowerofai.com/blog/how-to-adapt-to-googles-agentic-ai-search-brand-playbook&text=How+to+Adapt+to+Google%27s+Agentic+AI+Search" target="_blank" rel="noopener">X</a>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="ft-top">
+        <div class="ft-brand">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+            <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+              <img src="/logo.png" alt="H²AI" width="32" height="32" style="filter: brightness(0) invert(1);">
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:800;color:var(--white);letter-spacing:-0.02em">H²AI</span>
+            </a>
+          </div>
+          <p>The Human Multiplier Framework. Three specialised arms — Advisory, Learn, Labs — united by one mission: making every human in your organisation exponentially more capable.</p>
+        </div>
+
+        <div class="ft-col">
+          <h4>Advisory</h4>
+          <ul>
+            <li><a href="/#advisory">AI Readiness Audit</a></li>
+            <li><a href="/#advisory">Implementation Roadmap</a></li>
+            <li><a href="/#advisory">Workflow Embedding</a></li>
+            <li><a href="/#enquiry">Book a Discovery Call</a></li>
+          </ul>
+        </div>
+
+        <div class="ft-col">
+          <h4>Learn</h4>
+          <ul>
+            <li><a href="/#learn-section">Live Cohorts</a></li>
+            <li><a href="/#learn-section">Certifications</a></li>
+            <li><a href="/#learn-section">Team Training</a></li>
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="ft-col">
+          <h4>Labs</h4>
+          <ul>
+            <li><a href="/#labs-section">Pathw(AI)se</a></li>
+            <li><a href="/#labs-section">Ads Test Simulator</a></li>
+            <li><a href="/#labs-section">Marketing Audit Tool</a></li>
+            <li><a href="/#enquiry">Early Access</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ft-bot">
+        <p>© 2026 H²AI Technologies. All rights reserved.</p>
+        <p>HUMAN TO THE POWER OF AI™ is a trademark of H²AI Technologies.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ─── CUSTOM CURSOR ─── */
+    const cursor     = document.getElementById('cursor');
+    const cursorRing = document.getElementById('cursor-ring');
+    let mx = -100, my = -100, rx = -100, ry = -100;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top  = my + 'px';
+    });
+
+    (function animCursor() {
+      rx += (mx - rx) * 0.1;
+      ry += (my - ry) * 0.1;
+      cursorRing.style.left = rx + 'px';
+      cursorRing.style.top  = ry + 'px';
+      requestAnimationFrame(animCursor);
+    })();
+
+    /* ─── SCROLL PROGRESS ─── */
+    const progressLine = document.getElementById('progress-line');
+
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const total    = document.documentElement.scrollHeight - window.innerHeight;
+      progressLine.style.width = (scrolled / total * 100) + '%';
+    }, { passive: true });
+
+    /* ─── MOBILE MENU ─── */
+    function toggleMob() {
+      document.getElementById('mob').classList.toggle('open');
+    }
+
+    document.addEventListener('click', e => {
+      const mob = document.getElementById('mob');
+      if (mob.classList.contains('open') &&
+          !mob.contains(e.target) &&
+          !document.querySelector('.nav-toggle').contains(e.target)) {
+        mob.classList.remove('open');
+      }
+    });
+
+    /* ─── TOC ACTIVE STATE ─── */
+    const tocLinks = document.querySelectorAll('.toc-list a');
+    const sections = ['section-1', 'section-2', 'section-3'].map(id => document.getElementById(id));
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (s && window.scrollY >= s.offsetTop - 120) current = s.id;
+      });
+      tocLinks.forEach(a => {
+        a.classList.toggle('toc-active', a.getAttribute('href') === '#' + current);
+      });
+    }, { passive: true });
+
+    /* ─── COPY LINK ─── */
+    function copyLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        const btn = document.querySelector('.share-link');
+        const orig = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = orig, 2000);
+      });
+    }
+  </script>
+
+</body>
+</html>

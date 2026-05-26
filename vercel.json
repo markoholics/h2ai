@@ -1,17 +1,23 @@
 {
   "version": 2,
   "builds": [
-    { "src": "api/**/*.js", "use": "@vercel/node" },
-    { "src": "index.html",  "use": "@vercel/static" },
-    { "src": "photo.jpg",   "use": "@vercel/static" },
-    { "src": "photo.jpeg",  "use": "@vercel/static" },
-    { "src": "logo.png",    "use": "@vercel/static" }
+    { "src": "api/**/*.js",                                          "use": "@vercel/node" },
+    { "src": "index.html",                                           "use": "@vercel/static" },
+    { "src": "blog/index.html",                                      "use": "@vercel/static" },
+    { "src": "blog/how-to-adapt-to-googles-agentic-ai-search-brand-playbook/index.html", "use": "@vercel/static" },
+    { "src": "photo.jpg",                                            "use": "@vercel/static" },
+    { "src": "photo.jpeg",                                           "use": "@vercel/static" },
+    { "src": "logo.png",                                             "use": "@vercel/static" }
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/$1.js" },
     { "src": "/photo.jpg",  "dest": "/photo.jpg" },
     { "src": "/photo.jpeg", "dest": "/photo.jpeg" },
     { "src": "/logo.png",   "dest": "/logo.png" },
-    { "src": "/(.*)",       "dest": "/index.html" }
+    { "src": "/blog/how-to-adapt-to-googles-agentic-ai-search-brand-playbook", "dest": "/blog/how-to-adapt-to-googles-agentic-ai-search-brand-playbook/index.html" },
+    { "src": "/blog/how-to-adapt-to-googles-agentic-ai-search-brand-playbook/", "dest": "/blog/how-to-adapt-to-googles-agentic-ai-search-brand-playbook/index.html" },
+    { "src": "/blog",  "dest": "/blog/index.html" },
+    { "src": "/blog/", "dest": "/blog/index.html" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
