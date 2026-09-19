@@ -1759,6 +1759,13 @@
                 <p>Your information is never shared. Advisory conversations are under NDA on request.</p>
               </div>
             </div>
+            <div class="trust-row r rd3">
+              <div class="trust-ico">✉️</div>
+              <div>
+                <h4>Prefer email?</h4>
+                <p>Write directly to <a href="mailto:contact@humantothepowerofai.com" style="color:var(--blue-light);text-decoration:none;">contact@humantothepowerofai.com</a></p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -2024,7 +2031,7 @@
     /* ─── ENQUIRY FORM ─── */
     async function submitEnquiry(e) {
       e.preventDefault();
-      const btn  = document.getElementById('form-btn');
+      const btn   = document.getElementById('form-btn');
       const errEl = document.getElementById('form-err');
 
       errEl.classList.remove('show');
@@ -2058,19 +2065,14 @@
       }
 
       try {
-        const { error } = await sb.from('enquiries').insert([{
-          full_name:         name,
-          email:             email,
-          phone:             phone   || null,
-          role:              role,
-          company:           company || null,
-          organisation_size: size    || null,
-          enquiry_type:      type,
-          message:           message || null,
-          source:            'website',
-        }]);
+        const res = await fetch('/api/enquiry', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify({ name, email, phone, role, company, size, type, message }),
+        });
 
-        if (error) throw new Error(error.message);
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Submission failed');
 
         document.getElementById('form-body').style.display = 'none';
         document.getElementById('form-ok').classList.add('show');
@@ -2078,11 +2080,7 @@
 
       } catch (err) {
         console.error('[enquiry]', err);
-        const msg = err.message || '';
-        const friendly = msg.includes('schema cache') || msg.includes('relation') || msg.includes('does not exist')
-          ? 'Our enquiry system is being set up — please email us directly at hello@humantothepowerofai.com and we\'ll get back to you within 24 hours.'
-          : msg || 'Something went wrong — please try again or email us directly.';
-        errEl.textContent = friendly;
+        errEl.textContent = err.message || 'Something went wrong — please try again or email us at contact@humantothepowerofai.com.';
         errEl.classList.add('show');
         btn.disabled = false;
         btn.classList.remove('loading');
