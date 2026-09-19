@@ -18,10 +18,16 @@
     { "src": "terms/index.html",                                        "use": "@vercel/static" },
     { "src": "photo.jpg",                                            "use": "@vercel/static" },
     { "src": "photo.jpeg",                                           "use": "@vercel/static" },
-    { "src": "logo.png",                                             "use": "@vercel/static" }
+    { "src": "logo.png",                                             "use": "@vercel/static" },
+    { "src": "partners/w2s.webp",                                    "use": "@vercel/static" },
+    { "src": "partners/apollo.png",                                  "use": "@vercel/static" },
+    { "src": "partners/apify.png",                                   "use": "@vercel/static" }
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/$1.js" },
+    { "src": "/partners/w2s.webp",   "dest": "/partners/w2s.webp" },
+    { "src": "/partners/apollo.png", "dest": "/partners/apollo.png" },
+    { "src": "/partners/apify.png",  "dest": "/partners/apify.png" },
     { "src": "/photo.jpg",  "dest": "/photo.jpg" },
     { "src": "/photo.jpeg", "dest": "/photo.jpeg" },
     { "src": "/logo.png",   "dest": "/logo.png" },

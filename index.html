@@ -1142,6 +1142,61 @@
     .ok-hdg { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
     .ok-sub { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
 
+    /* ─── STRATEGIC PARTNERS ─── */
+    #partners {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 64px 0;
+    }
+
+    .partners-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .partners-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .partner-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 32px;
+      width: 200px;
+      height: 96px;
+      transition: border-color .25s, box-shadow .25s, transform .25s;
+      text-decoration: none;
+    }
+
+    .partner-card:hover {
+      border-color: rgba(255,255,255,0.18);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      transform: translateY(-3px);
+    }
+
+    .partner-card img {
+      max-width: 140px;
+      max-height: 52px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .partners-grid { gap: 16px; }
+      .partner-card  { width: 160px; height: 80px; padding: 16px 20px; }
+      .partner-card img { max-width: 110px; max-height: 40px; }
+    }
+
     /* ─── BOOK A CALL ─── */
     #book-call {
       background: var(--bg);
@@ -1551,6 +1606,27 @@
           <div class="sb-pos">Experimental AI tools for modern marketers.</div>
           <p>AI-native products including Pathw(AI)se, Ads Test Simulator, and the Marketing Audit Tool — built for marketers who want to move faster and test smarter.</p>
           <span class="sb-arrow">Explore Labs <span>→</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STRATEGIC PARTNERS ═══ -->
+  <section id="partners">
+    <div class="container">
+      <div class="partners-header">
+        <span class="section-tag r">Strategic Partners</span>
+        <h2 class="stitle r rd1" style="font-size:1.8rem">Trusted by the tools that power modern growth.</h2>
+      </div>
+      <div class="partners-grid">
+        <a href="https://www.w2ssolutions.com/" target="_blank" rel="noopener" class="partner-card r">
+          <img src="/partners/w2s.webp" alt="W2S Solutions" />
+        </a>
+        <a href="https://www.apollo.io/sign-up?utm_campaign=agency_c4db207b2df6&utm_gspartnerkey=c4db207b2df6&utm_medium=partner&utm_source=agency_partnerstack&pscd=get.apollo.io&ps_partner_key=YzRkYjIwN2IyZGY2&ps_xid=SpQWkzJyZRI01h&gsxid=SpQWkzJyZRI01h&gspk=YzRkYjIwN2IyZGY2" target="_blank" rel="noopener" class="partner-card r rd1">
+          <img src="/partners/apollo.png" alt="Apollo.io" />
+        </a>
+        <a href="https://apify.com/?fpr=fm6uvs" target="_blank" rel="noopener" class="partner-card r rd2">
+          <img src="/partners/apify.png" alt="Apify" />
         </a>
       </div>
     </div>
