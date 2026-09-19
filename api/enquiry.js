@@ -85,7 +85,7 @@ module.exports = async (req, res) => {
         method:  'POST',
         headers: { 'Authorization': `Bearer ${resendKey}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          from:     'H²AI Enquiries <noreply@humantothepowerofai.com>',
+          from:     'H²AI Enquiries <onboarding@resend.dev>',
           to:       ['contact@humantothepowerofai.com'],
           reply_to: email,
           subject:  `New enquiry: ${name} — ${TYPE_LABELS[type] || type}`,
